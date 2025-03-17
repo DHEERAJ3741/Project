@@ -1,8 +1,4 @@
 import pickle
-m=open('Passwords.dat','wb')
-j={}
-pickle.dump(j,m)
-m.close()
 print('Secure password storage by Dheeraj')
 print()
 print('All your passwords are encrypted and saved safely with us')
