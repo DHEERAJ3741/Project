@@ -1,4 +1,8 @@
 import pickle
+m=open('Passwords.dat','wb')
+j={}
+pickle.dump(j,m)
+m.close()
 print('Secure password storage by Dheeraj')
 print()
 print('All your passwords are encrypted and saved safely with us')
@@ -18,9 +22,12 @@ while ans=='y':
         while True:
             e=pickle.load(fin)
             if d in e:
-                print()
+                for i in e:
+                    if i==d:
+                        e[d].append([c,b])
+                pickle.dump(e,fin)
             else:
-                e[d]=[c,b]
+                e[d]=[[c,b]]
                 fin.seek(0)
                 pickle.dump(e,fin)
     except EOFError:
@@ -32,6 +39,7 @@ fin1=open('Passwords.dat','rb')
 try:
     while True:
         g=pickle.load(fin1)
-        print(g)
+        for l in g:
+            print(l)
 except EOFError:
     fin1.close()
