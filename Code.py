@@ -4,16 +4,14 @@ print()
 print('All your passwords are encrypted and saved safely with us')
 print()
 print('NOTE: Never use caps and space in website name')
+print()
 ans='y'
-a=[]
 fin=open('Passwords.dat','rb+')
 while ans=='y':
-    b=input('Enter your password: ')
+    a=input('Enter your password: ')
     c=input('Enter the associated username: ')
     d=input('Enter the associated website: ')
-    a=[c,b]
-    print(a)
-    ans2=0
+    b=a                                                   #here b is supposed to be our encypted password but I'm still working on the encryption
     try:
         while True:
             e=pickle.load(fin)
@@ -21,21 +19,12 @@ while ans=='y':
                 for i in e:
                     if i==d:
                         e[d].append([c,b])
-                pickle.dump(e,fin)
+                        fin.seek(0)
+                        pickle.dump(e,fin)
             else:
                 e[d]=[[c,b]]
                 fin.seek(0)
                 pickle.dump(e,fin)
     except EOFError:
         fin.close()
-    ans=input('Do you want to add another (y/n): ')
-
-
-fin1=open('Passwords.dat','rb')
-try:
-    while True:
-        g=pickle.load(fin1)
-        for l in g:
-            print(l)
-except EOFError:
-    fin1.close()
+    ans=input('Do you want to add another one (y/n): ')
