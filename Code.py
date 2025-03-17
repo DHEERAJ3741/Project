@@ -15,14 +15,23 @@ while ans=='y':
     print(a)
     ans2=0
     try:
-        e=pickle.load(fin)
-        for i in e:
-            for j in i:
-                if j==d:
-                    i[j].append(a)
-                    ans2=1
-            if ans2==0:
-                i[d]=1
+        while True:
+            e=pickle.load(fin)
+            if d in e:
+                print()
+            else:
+                e[d]=[c,b]
+                fin.seek(0)
+                pickle.dump(e,fin)
     except EOFError:
-        print()
+        fin.close()
     ans=input('Do you want to add another (y/n): ')
+
+
+fin1=open('Passwords.dat','rb')
+try:
+    while True:
+        g=pickle.load(fin1)
+        print(g)
+except EOFError:
+    fin1.close()
